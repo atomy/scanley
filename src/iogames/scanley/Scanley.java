@@ -9,6 +9,8 @@ import iogames.scanley.entity.callback.EventCallback;
 public class Scanley {
     private static final String TAG = Scanley.class.getSimpleName();
 
+    public static int timeoutMs = 20 * 1000;
+
     /**
      * Scanner reference.
      */

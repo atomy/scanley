@@ -19,8 +19,6 @@ public class ServerHandler extends Thread {
      */
     private volatile boolean enabled = true;
 
-    public static int timeoutMs = 20 * 1000;
-
     private Server server;
 
     private EventCallback eventCallback;
@@ -82,7 +80,7 @@ public class ServerHandler extends Thread {
 
         try {
             socket = new Socket();
-            socket.connect(new InetSocketAddress(this.server.getIp(), this.server.getPort()), timeoutMs);
+            socket.connect(new InetSocketAddress(this.server.getIp(), this.server.getPort()), Scanley.timeoutMs);
         } catch (IOException e) {
             enabled = false;
             eventCallback.onFail(server, e);
