@@ -13,12 +13,13 @@ import java.net.Socket;
 public class ServerHandler extends Thread {
     private static final String TAG = ServerHandler.class.getSimpleName();
     private static final long TIMEOUT_DELAY_MS = 5000;
-    private static final int SOCKET_CONNECT_TIMEOUT_MS = 20 * 1000;
 
     /**
      * Thread enabled switch.
      */
     private volatile boolean enabled = true;
+
+    public static int timeoutMs = 20 * 1000;
 
     private Server server;
 
@@ -81,7 +82,7 @@ public class ServerHandler extends Thread {
 
         try {
             socket = new Socket();
-            socket.connect(new InetSocketAddress(this.server.getIp(), this.server.getPort()), SOCKET_CONNECT_TIMEOUT_MS);
+            socket.connect(new InetSocketAddress(this.server.getIp(), this.server.getPort()), timeoutMs);
         } catch (IOException e) {
             enabled = false;
             eventCallback.onFail(server, e);
